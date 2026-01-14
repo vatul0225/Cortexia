@@ -77,10 +77,10 @@ const ContactSection = () => {
 
     try {
       await emailjs.send(
-        "service_me6xlca", // ⬅️ Your Service ID
-        "template_8sscl4t", // ⬅️ Your Template ID
+        "service_mivca9w", // ⬅️ Your Service ID
+        "template_yaeqqo6", // ⬅️ Your Template ID
         templateParams,
-        "1-lqNpdtnGbBjeRML" // ⬅️ Your Public Key
+        "d0Cg_n3V35Dvh0OOq" // ⬅️ Your Public Key
       );
 
       setIsSubmitted(true);

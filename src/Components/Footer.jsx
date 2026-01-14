@@ -54,7 +54,8 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       alert("Please fill required fields");
       return;
@@ -239,118 +240,120 @@ const ContactSection = () => {
                     Send us a message
                   </h3>
 
-                  <div className="space-y-6">
-                    {/* Name Field */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Your Name <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <User
-                          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-                          size={20}
-                        />
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a4d3c] focus:border-transparent outline-none transition-all"
-                          placeholder="Enter your full name"
-                        />
+                  <form onSubmit={handleSubmit}>
+                    <div className="space-y-6">
+                      {/* Name Field */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Your Name <span className="text-red-500">*</span>
+                        </label>
+                        <div className="relative">
+                          <User
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+                            size={20}
+                          />
+                          <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a4d3c] focus:border-transparent outline-none transition-all"
+                            placeholder="Enter your full name"
+                          />
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Email Field */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <Mail
-                          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-                          size={20}
-                        />
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a4d3c] focus:border-transparent outline-none transition-all"
-                          placeholder="example@gmail.com"
-                        />
+                      {/* Email Field */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Email Address <span className="text-red-500">*</span>
+                        </label>
+                        <div className="relative">
+                          <Mail
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+                            size={20}
+                          />
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a4d3c] focus:border-transparent outline-none transition-all"
+                            placeholder="example@gmail.com"
+                          />
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Phone Field (Optional) */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone Number{" "}
-                        <span className="text-gray-400 text-xs">
-                          (Optional)
-                        </span>
-                      </label>
-                      <div className="relative">
-                        <Phone
-                          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-                          size={20}
-                        />
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a4d3c] focus:border-transparent outline-none transition-all"
-                          placeholder="+91 1234567890"
-                        />
+                      {/* Phone Field (Optional) */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Phone Number{" "}
+                          <span className="text-gray-400 text-xs">
+                            (Optional)
+                          </span>
+                        </label>
+                        <div className="relative">
+                          <Phone
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+                            size={20}
+                          />
+                          <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                            className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a4d3c] focus:border-transparent outline-none transition-all"
+                            placeholder="+91 1234567890"
+                          />
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Message Field */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Your Message <span className="text-red-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <MessageSquare
-                          className="absolute left-4 top-4 text-gray-400"
-                          size={20}
-                        />
-                        <textarea
-                          name="message"
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          rows="6"
-                          className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a4d3c] focus:border-transparent outline-none transition-all resize-none"
-                          placeholder="Tell us about your project or inquiry..."
-                        />
+                      {/* Message Field */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Your Message <span className="text-red-500">*</span>
+                        </label>
+                        <div className="relative">
+                          <MessageSquare
+                            className="absolute left-4 top-4 text-gray-400"
+                            size={20}
+                          />
+                          <textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleInputChange}
+                            rows="6"
+                            className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a4d3c] focus:border-transparent outline-none transition-all resize-none"
+                            placeholder="Tell us about your project or inquiry..."
+                          />
+                        </div>
                       </div>
+
+                      {/* Submit Button */}
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-[#1a4d3c] text-white py-4 rounded-xl hover:bg-[#2a5d4c] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            <span>Sending...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Send Message</span>
+                            <Send size={20} />
+                          </>
+                        )}
+                      </button>
+
+                      <p className="text-sm text-gray-500 text-center">
+                        By submitting this form, you agree to our privacy policy
+                        and terms of service.
+                      </p>
                     </div>
-
-                    {/* Submit Button */}
-                    <button
-                      onClick={handleSubmit}
-                      disabled={isSubmitting}
-                      className="w-full bg-[#1a4d3c] text-white py-4 rounded-xl hover:bg-[#2a5d4c] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                          <span>Sending...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Send Message</span>
-                          <Send size={20} />
-                        </>
-                      )}
-                    </button>
-
-                    <p className="text-sm text-gray-500 text-center">
-                      By submitting this form, you agree to our privacy policy
-                      and terms of service.
-                    </p>
-                  </div>
+                  </form>
                 </>
               )}
             </div>

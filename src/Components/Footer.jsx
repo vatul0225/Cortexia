@@ -1,3 +1,4 @@
+import emailjs from "emailjs-com";
 import React, { useState, useEffect, useRef } from "react";
 
 // Call to Action Section
@@ -53,37 +54,49 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!formData.name || !formData.email || !formData.message) {
-      alert("Please fill in all required fields (Name, Email, and Message)");
-      return;
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      alert("Please enter a valid email address");
+      alert("Please fill required fields");
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+    const now = new Date();
 
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-        });
-      }, 3000);
-    }, 1500);
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      service: "Contact Form",
+      date: now.toLocaleDateString(),
+      time: now.toLocaleTimeString(),
+    };
+
+    try {
+      await emailjs.send(
+        "service_me6xlca", // ⬅️ Your Service ID
+        "template_8sscl4t", // ⬅️ Your Template ID
+        templateParams,
+        "QPz8Lhcg2yNI2J0iT" // ⬅️ Your Public Key
+      );
+
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (error) {
+      alert("Failed to send message");
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

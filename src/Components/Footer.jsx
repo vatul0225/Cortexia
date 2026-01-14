@@ -80,7 +80,7 @@ const ContactSection = () => {
         "service_me6xlca", // ⬅️ Your Service ID
         "template_8sscl4t", // ⬅️ Your Template ID
         templateParams,
-        "QPz8Lhcg2yNI2J0iT" // ⬅️ Your Public Key
+        "1-lqNpdtnGbBjeRML" // ⬅️ Your Public Key
       );
 
       setIsSubmitted(true);
